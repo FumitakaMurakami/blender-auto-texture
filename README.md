@@ -41,6 +41,12 @@ docker cp input/input.glb  blender:/config/projects
 ```
 
 ## スクリプト実行
+blenderコマンドを有効化するためにパスを通す
+```
+docker-compose exec alias blender='bin/Blender'
+```
+
+以下のコマンドでスクリプト実行
 ```
 docker-compose exec blender blender --background --python /config/projects/bake_script.py
 ```
@@ -48,4 +54,9 @@ docker-compose exec blender blender --background --python /config/projects/bake_
 `/config/projects/output/`フォルダにベイク済みのoutput.glbが生成される
 
 ## ローカルでスクリプトを実行する場合
-output
+`/output`ディレクトリを作成
+
+blenderコマンドを有効化させるためにblender.exeファイルのある場所にパスを通す
+
+以下のスクリプトで実行
+`blender blender --background --python /config/projects/bake_script.py`
