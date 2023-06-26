@@ -58,5 +58,15 @@ docker-compose exec blender blender --background --python /config/projects/bake_
 
 blenderコマンドを有効化させるためにblender.exeファイルのある場所にパスを通す
 
+pythonファイルの各パスをローカル用の物に変更。（コメントアウトを解除する）
+```bake_script.py
+# ローカル環境のパス
+model_path = './input/input.glb'
+output_path = './output/output.glb'
+texture_path = "./output/output.png"
+```
+
+
+
 以下のスクリプトで実行
 `blender blender --background --python /config/projects/bake_script.py`
