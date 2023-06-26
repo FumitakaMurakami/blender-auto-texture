@@ -1,5 +1,10 @@
 # docker_blender導入からベイクスクリプト実行まで
 
+## プロジェクトをクローン
+```
+git clone https://github.com/FumitakaMurakami/blender_bake_script.git
+```
+
 ## docker_blenderのイメージpull
 
 ```
@@ -41,3 +46,6 @@ docker-compose exec blender blender --background --python /config/projects/bake_
 ```
 
 `/config/projects/output/`フォルダにベイク済みのoutput.glbが生成される
+
+## ローカルでスクリプトを実行する場合
+output
