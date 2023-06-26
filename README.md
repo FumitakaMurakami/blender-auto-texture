@@ -37,7 +37,7 @@ docker cp bake_script.py  blender:/config/projects
 同じくテスト用のglbファイルを送信
 （もしくはblenderGUIでモデルを作成しexport）
 ```
-docker cp input/input.glb  blender:/config/projects
+docker cp input/input.glb  blender:/config/projects/input
 ```
 
 ## スクリプト実行
