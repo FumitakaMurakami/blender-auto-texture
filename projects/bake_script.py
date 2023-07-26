@@ -367,15 +367,10 @@ def create_baked_model(model_path, output_path, texture_path):
     print('glbファイルが出力されました。')
 
 def main():
-    #docker_blender環境のパス
-    model_path = '/config/projects/input/input.glb'
-    output_path = '/config/projects/output/output.glb'
-    texture_path = '/config/projects/output/output.png'
-
-    # ローカル環境のパス
-    # model_path = './input/input.glb'
-    # output_path = './output/output.glb'
-    # texture_path = "./output/output.png"
+    # パス
+    model_path = './input/input.glb'
+    output_path = './output/output.glb'
+    texture_path = "./output/output.png"
 
     # ベイクモデル生成
     create_baked_model(model_path, output_path, texture_path)
