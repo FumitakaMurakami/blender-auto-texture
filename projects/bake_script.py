@@ -1,4 +1,5 @@
 import bpy
+import time
 
 class ObjectSupport:
     '''
@@ -372,8 +373,15 @@ def main():
     output_path = './output/output.glb'
     texture_path = "./output/output.png"
 
+    # 時間計測開始
+    time_sta = time.time()
+
     # ベイクモデル生成
     create_baked_model(model_path, output_path, texture_path)
+
+    # 時間計測終了
+    exe_time = time.time()-time_sta
+    print(f'実行時間{round(exe_time, 2)}秒')
 
 if __name__ == '__main__':
     main()
