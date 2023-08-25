@@ -3,7 +3,7 @@ services:
   blender:
     #    image: lscr.io/linuxserver/blender:latest
     build: .
-    container_name: blender
+    container_name: blender-auto-texture
     security_opt:
       - seccomp:unconfined #optional
     environment:
@@ -15,6 +15,6 @@ services:
       - ./projects:/projects
     working_dir: /projects
     ports:
-      - 13000:3000
-      - 13001:3001
+      - 13010:3000
+      - 13011:3001
     restart: unless-stopped

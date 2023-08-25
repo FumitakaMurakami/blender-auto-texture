@@ -16,3 +16,4 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN pip install numpy==1.23.1
 RUN alias blender='/bin/Blender'
+RUN alias python='/bin/pythonr'

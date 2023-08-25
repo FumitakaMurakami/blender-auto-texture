@@ -14,21 +14,24 @@ docker compose up -d --build
 
 ## WebGUI アクセス
 
-[localhost:13000](localhost:13000)
+[localhost:13010](localhost:13010)
 
-## ベイクスクリプト実行
+## 自動テクスチャ加工実行
 
-以下のコマンドでスクリプト実行
+以下のコマンドで実行
 
 ```
-docker-compose exec blender blender --background --python /projects/bake_script.py
+docker-compose exec blender-auto-texture python /projects/create_texture.py
+docker-compose exec blender-auto-texture blender --background --python /projects/set_texture.py
 ```
-
-1−2 分後 `/projects/output/`フォルダにベイク済みの output.glb が生成される
 
 ## ローカルでスクリプトを実行する場合
 
 blender コマンドを有効化させるために blender.exe ファイルのある場所にパスを通す
 
+inputディレクトリにキャンバスに貼り付けたい画像舗を保存し、input.pngに名前を変更
+
 以下のスクリプトで実行
-`blender --background --python /config/projects/bake_script.py`
+`cd projects`
+`python create_texture_script.py` //テクスチャ作成
+`blender --background --python set_texture.py` //テクスチャ貼り付け、glb生成

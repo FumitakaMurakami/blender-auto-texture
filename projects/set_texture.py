@@ -1,5 +1,4 @@
 import bpy
-import time
 
 class ObjectSupport:
     '''
@@ -39,77 +38,6 @@ class ObjectSupport:
 
         # 作成マテリアルをセットする
         set_result = tex_sup.add_material_target(target_object, arg_materialname=make_materialname)
-
-class BakeObject:
-    '''
-    テクスチャのベイク処理に関するクラス
-    '''
-
-    # ベイク設定
-    def bake_setting(self):
-        # レンダリングエンジンを CYCLES に切り替える
-        bpy.context.scene.render.engine = 'CYCLES'
-
-        # GPUの利用有無を確認する
-        GPUuse=True
-        if GPUuse == True:
-            # 利用設定ならGPUの設定を行う
-            bpy.data.scenes["Scene"].cycles.device = 'GPU'
-
-        # render.bake の設定項目を予め設定する
-        bake_setting = bpy.context.scene.render.bake
-
-        # 直接照明の影響設定
-        bake_setting.use_pass_direct = True
-
-        # 間接照明の影響設定
-        bake_setting.use_pass_indirect = False
-
-        # カラーの影響設定
-        bake_setting.use_pass_color = True
-
-    # テクスチャ画像設定
-    def bake_texture_setting(self, target_object, texturenode_name, bake_image):
-
-        # 参照の保存用変数
-        name_mapping = {}
-
-        # TextureSupportクラスインスタンス取得
-        tex_sup = TextureSupport()
-
-        # 指定オブジェクトのマテリアルリストを取得する
-        for material_slot in target_object.material_slots:
-            # スロットのマテリアルを取得する
-            target_material = material_slot.material
-
-            # マテリアルが割り当てられているか
-            if target_material == None:
-                continue
-
-            # 参照マテリアルをノード使用に変更する
-            tex_sup.use_material_node(target_material)
-
-            # 新規テクスチャを参照する画像ノードを追加する
-            add_node = tex_sup.add_node_image(
-                material=target_material,
-                image=bake_image
-            )
-
-            # 作成ノードの参照を保存する
-            name_mapping[texturenode_name + target_material.name] = add_node
-
-            # 指定の画像ノードを選択状態に設定する
-            tex_sup.select_node_target(
-                material=target_material,
-                node=name_mapping[texturenode_name + target_material.name]
-            )
-    
-        return name_mapping
-
-    def bake_object(self, bake_type, save_mode):
-        # ベイクの実行
-        bpy.ops.object.bake(type=bake_type, save_mode=save_mode)
-
 
 class TextureSupport:
     '''
@@ -283,63 +211,12 @@ class TextureSupport:
 
         return newimage
 
-# オブジェクトのベイク
-def create_bake_texture(obj, texture_path, bake_obj=BakeObject(), tex_sup=TextureSupport()):
-    '''
-    オブジェクトをベイクしてテクスチャを生成し、PNGとして保存するメソッド
-    '''
-    texturenode_name = "ForBakeTextureNode"
-
-    # 新規テクスチャを作成して参照を取得する
-    bake_image = tex_sup.make_new_image(
-        texturename="BakeTexture",
-        texturesize=2048
-    )
-
-    # 追加オブジェクトを選択状態にする
-    obj.select_set(True)
-
-    # 指定オブジェクトをアクティブにする
-    bpy.context.view_layer.objects.active = obj
-
-    # ベイクするオブジェクトのテクスチャの設定
-    name_mapping = bake_obj.bake_texture_setting(obj, texturenode_name, bake_image)
-
-    # ベイクの設定
-    bake_obj.bake_setting()
-    
-    # ベイクの実行
-    bake_obj.bake_object('DIFFUSE', 'EXTERNAL')
-    #bpy.ops.object.bake(type='DIFFUSE', save_mode='EXTERNAL')
-
-    # テクスチャ画像保存
-    bake_image.save_render(filepath=texture_path)
-
-    # 作成したテクスチャにフェイクユーザを設定する
-    bake_image.use_fake_user = True
-
-    # 指定オブジェクトのマテリアルリストを取得する
-    for material_slot in obj.material_slots:
-        # スロットのマテリアルを取得する
-        target_material = material_slot.material
-
-        # マテリアルが割り当てられているか
-        if target_material == None:
-            continue
-
-        # 追加した画像ノードを削除する
-        tex_sup.delete_node_target(
-            material = target_material,
-            node = name_mapping[texturenode_name + target_material.name]
-        )
-
-def create_baked_model(model_path, output_path, texture_path):
+def set_object_texture(model_path, output_path, texture_path):
     '''
     ベイクされたモデルを出力するメソッド
     '''
     #クラスインスタンス取得
     obj_sup = ObjectSupport()
-    bake_obj = BakeObject()
     tex_sup = TextureSupport()
 
     # シーンのオブジェクト削除
@@ -350,17 +227,13 @@ def create_baked_model(model_path, output_path, texture_path):
 
     # 追加モデルのオブジェクト名取得
     model_names = obj_sup.get_add_object_name()
+    print( model_names)
 
-    #追加モデルのオブジェクトごとにベイクを実行
-    for model_name in model_names:
-        # 追加オブジェクト情報取得
-        obj = bpy.data.objects.get(model_name)
+    # 追加オブジェクト情報取得
+    obj = bpy.data.objects.get('SM_Canvas_Painting_MI_Canvas_0')
 
-        # ベイク処理実行
-        create_bake_texture(obj, texture_path, bake_obj, tex_sup)
-
-        # テクスチャ貼り付け
-        obj_sup.set_object_texture(obj, texture_path)
+    #テクスチャ貼り付け
+    obj_sup.set_object_texture(obj, texture_path)
 
     # glbへの変換と出力
     bpy.ops.export_scene.gltf(filepath=output_path)
@@ -369,19 +242,12 @@ def create_baked_model(model_path, output_path, texture_path):
 
 def main():
     # パス
-    model_path = './input/input.glb'
+    model_path = './input/canvas_simple.glb'
     output_path = './output/output.glb'
-    texture_path = "./output/output.png"
-
-    # 時間計測開始
-    time_sta = time.time()
+    texture_path = "./output/texture.png"
 
     # ベイクモデル生成
-    create_baked_model(model_path, output_path, texture_path)
-
-    # 時間計測終了
-    exe_time = time.time()-time_sta
-    print(f'実行時間{round(exe_time, 2)}秒')
+    set_object_texture(model_path, output_path, texture_path)
 
 if __name__ == '__main__':
     main()
