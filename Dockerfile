@@ -15,5 +15,5 @@ RUN pip install requests
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN pip install numpy==1.23.1
+RUN pip install opencv-python
 RUN alias blender='/bin/Blender'
-RUN alias python='/bin/pythonr'

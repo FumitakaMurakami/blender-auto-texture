@@ -21,8 +21,8 @@ docker compose up -d --build
 以下のコマンドで実行
 
 ```
-docker-compose exec blender-auto-texture python /projects/create_texture.py
-docker-compose exec blender-auto-texture blender --background --python /projects/set_texture.py
+docker exec blender-auto-texture python create_texture.py
+docker exec blender-auto-texture blender --background --python set_texture.py
 ```
 
 ## ローカルでスクリプトを実行する場合
@@ -32,6 +32,9 @@ blender コマンドを有効化させるために blender.exe ファイルの�
 inputディレクトリにキャンバスに貼り付けたい画像舗を保存し、input.pngに名前を変更
 
 以下のスクリプトで実行
+
 `cd projects`
+
 `python create_texture_script.py` //テクスチャ作成
+
 `blender --background --python set_texture.py` //テクスチャ貼り付け、glb生成

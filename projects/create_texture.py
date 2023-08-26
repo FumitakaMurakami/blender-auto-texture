@@ -12,6 +12,8 @@ def set_texture(img1_path, img2_path, output_path):
 
     cv2.imwrite(output_path, img2)
 
+    print('テクスチャを適用しました')
+
 def main():
     # パス
     img1_path = './input/input.png'
