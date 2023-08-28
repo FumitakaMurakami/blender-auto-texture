@@ -35,6 +35,6 @@ inputディレクトリにキャンバスに貼り付けたい画像舗を保存
 
 `cd projects`
 
-`python create_texture_script.py` //テクスチャ作成
+`python create_texture_script.py ファイル名` //テクスチャ作成
 
 `blender --background --python set_texture.py` //テクスチャ貼り付け、glb生成

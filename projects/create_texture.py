@@ -38,6 +38,9 @@ def set_texture(img1_path, img2_path, output_path):
     print('テクスチャを適用しました')
 
 def main():
+    if (len(sys.argv) == 1):
+        print('ファイル名を指定してください')
+        return 0
     # パス
     img1_path = './input/' + sys.argv[1]
     img2_path = './input/canvas_tex.jpg'
