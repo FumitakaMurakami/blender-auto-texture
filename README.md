@@ -21,7 +21,7 @@ docker compose up -d --build
 以下のコマンドで実行
 
 ```
-docker exec blender-auto-texture python create_texture.py
+docker exec blender-auto-texture python3 create_texture.py
 docker exec blender-auto-texture blender --background --python set_texture.py
 ```
 
