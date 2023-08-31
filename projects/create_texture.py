@@ -1,6 +1,5 @@
 import cv2
 import sys
-import numpy as np
 
 def adjustImg(img, height, width):
     longest_edge = max(height, width)
@@ -96,9 +95,9 @@ def main():
         print('ファイル名を指定してください')
         return 0
     # パス
-    img1_path = './input/' + sys.argv[1]
+    img1_path = './input/' + sys.argv[1] + '.' + sys.argv[2]
     img2_path = './input/canvas_tex.jpg'
-    texture_path = "./output/texture.png"
+    texture_path = './output/'+ sys.argv[1] + '.png'
 
     set_texture(img1_path, img2_path, texture_path)
 

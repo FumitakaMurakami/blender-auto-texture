@@ -22,9 +22,17 @@ docker compose up -d --build
 
 input ディレクトリにキャンバスに貼り付けたい画像舗を保存しファイル名をコマンドオプションに入力
 
+※第一オプションにファイル名、第二オプションにテクスチャ化したい画像の拡張子を指定してください
+
 ```sh
-docker exec blender-auto-texture python3 create_texture.py ファイル名
-docker exec blender-auto-texture blender --background --python set_texture.py
+docker exec blender-auto-texture python3 exec.py ファイル名 拡張子
+```
+
+以下のコマンドが順に実行されます。
+
+```sh
+python3 create_texture.py ファイル名 拡張子
+blender --background --python set_texture.py　ファイル名
 ```
 
 # WebAPI インターフェイス

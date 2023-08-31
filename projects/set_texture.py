@@ -1,4 +1,5 @@
 import bpy
+import sys
 
 class ObjectSupport:
     '''
@@ -213,7 +214,7 @@ class TextureSupport:
 
 def set_object_texture(model_path, output_path, texture_path):
     '''
-    ベイクされたモデルを出力するメソッド
+    オブジェクトにテクスチャを貼り付けて、glbとして出力
     '''
     #クラスインスタンス取得
     obj_sup = ObjectSupport()
@@ -224,10 +225,6 @@ def set_object_texture(model_path, output_path, texture_path):
 
     # モデルの読み込み
     bpy.ops.import_scene.gltf(filepath=model_path)
-
-    # 追加モデルのオブジェクト名取得
-    model_names = obj_sup.get_add_object_name()
-    print( model_names)
 
     # 追加オブジェクト情報取得
     obj = bpy.data.objects.get('SM_Canvas_Painting_MI_Canvas_0')
@@ -243,8 +240,8 @@ def set_object_texture(model_path, output_path, texture_path):
 def main():
     # パス
     model_path = './input/canvas_simple.glb'
-    output_path = './output/output.glb'
-    texture_path = "./output/texture.png"
+    output_path = './output/' + sys.argv[4] + '.glb'
+    texture_path = './output/'+ sys.argv[4] + '.png'
 
     # ベイクモデル生成
     set_object_texture(model_path, output_path, texture_path)
