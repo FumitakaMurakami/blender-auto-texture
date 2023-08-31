@@ -17,4 +17,5 @@ services:
     ports:
       - 13010:3000
       - 13011:3001
+      - 8000:8000
     restart: unless-stopped

@@ -2,13 +2,13 @@
 
 ## docker_blender のイメージ pull
 
-```
+```sh
 docker pull linuxserver/blender
 ```
 
 ## ビルド
 
-```
+```sh
 docker compose up -d --build
 ```
 
@@ -20,11 +20,23 @@ docker compose up -d --build
 
 以下のコマンドで実行
 
-inputディレクトリにキャンバスに貼り付けたい画像舗を保存しファイル名をコマンドオプションに入力
+input ディレクトリにキャンバスに貼り付けたい画像舗を保存しファイル名をコマンドオプションに入力
 
-```
+```sh
 docker exec blender-auto-texture python3 create_texture.py ファイル名
 docker exec blender-auto-texture blender --background --python set_texture.py
 ```
 
+# WebAPI インターフェイス
 
+ユーザーに対して API アクセスを可能とする。
+API インターフェイスは以下。
+
+# WebAPI へのアクセス
+
+Web ブラウザに「http://127.0.0.1:18000」と入力、以下のメッセージが出ていればOK
+```
+{"message":"Hello,World"}
+```
+
+本システムでの[FastAPI の設定](./docs/fastapi.md)を参照

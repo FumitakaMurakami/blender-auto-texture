@@ -17,3 +17,8 @@ RUN pip install --upgrade setuptools
 RUN pip install numpy==1.23.1
 RUN pip install opencv-python
 RUN alias blender='/bin/Blender'
+RUN pip install fastapi uvicorn
+
+EXPOSE 8000
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
