@@ -32,12 +32,28 @@ docker exec blender-auto-texture blender --background --python set_texture.py
 ユーザーに対して API アクセスを可能とする。
 API インターフェイスは以下。
 
-# WebAPI へのアクセス
+## WebAPI へのアクセス
 
 Web ブラウザに「http://127.0.0.1:8000」と入力、以下のメッセージが出ていればOK
 
 ```
 {"message":"Hello,World"}
 ```
+
+## API Document
+
+以下にアクセスすることで API ドキュメントが参照可能。
+
+```
+http://localhost:8000/docs
+```
+
+```
+http://127.0.0.1:8000/redoc
+```
+
+## 注意
+
+! 本番環境では、Dockerfile の--reload を外すこと。
 
 本システムでの[FastAPI の設定](./docs/fastapi.md)を参照
