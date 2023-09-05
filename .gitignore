@@ -2,3 +2,5 @@ output.glb
 texture.png
 .DS_Store
 __pycache__
+bk/
+__dev/
