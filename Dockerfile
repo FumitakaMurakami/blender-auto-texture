@@ -17,8 +17,8 @@ RUN pip install --upgrade setuptools
 RUN pip install numpy==1.23.1
 RUN pip install opencv-python
 RUN alias blender='/bin/Blender'
-RUN pip install fastapi uvicorn
-
+RUN pip install fastapi uvicorn 
+RUN pip install replicate 
 EXPOSE 8000
 
 # 本番時、"--reload"は外す

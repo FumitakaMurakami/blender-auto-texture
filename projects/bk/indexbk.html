@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="text/javascript" src="./eventhandller.js"></script>
     <script type="text/javascript" src="./speechtotext.js"></script>
+    <script type="text/javascript" src="./eventhandller.js"></script>
   </head>
   <body>
+    <script></script>
     <div class="bg-white py-6 sm:py-8 lg:py-12">
       <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
         <!-- text - start -->
@@ -26,40 +27,6 @@
         </div>
         <!-- text - end -->
 
-        <!DOCTYPE html>
-
-        <!-- form - start -->
-        <div class="mx-auto grid max-w-screen-md">
-          <button
-            id="startStopButton"
-            class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
-          >
-            音声認識を開始
-          </button>
-
-          <textarea
-            id="result"
-            class="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring mt-5"
-            rows="10"
-            cols="50"
-          ></textarea>
-
-          <textarea
-            id="promptExchanged"
-            class="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring mt-5"
-            rows="10"
-            cols="50"
-          ></textarea>
-
-          <button
-            id="translationButton"
-            class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base mt-5"
-          >
-            英訳
-          </button>
-        </div>
-        <!-- form - end -->
-
         <!-- form - start -->
         <div class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
           <!-- Uploader -->
@@ -75,17 +42,6 @@
               id="imageData"
               class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
             />
-          </div>
-
-          <div>
-            <button
-              id="speechToTextButton"
-              class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base"
-              onclick="speechToText()"
-            >
-              speechToText
-            </button>
-            <textarea id="promptText"></textarea>
           </div>
 
           <!-- Buttons -->
